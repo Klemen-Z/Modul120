@@ -9,4 +9,11 @@ class dbView extends dbModel {
         $results = $this->getBooks();
         return $results;
     }
+    public function filterUser($what,$whatwhat) {
+        $yes = "%".$whatwhat."%";
+        $sql = "SELECT * FROM benutzer where $what like $yes";
+        echo $sql;
+        $results = $this->filterUser($what,$whatwhat);
+        return $results;
+    }
 }

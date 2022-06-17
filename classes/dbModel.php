@@ -21,9 +21,18 @@ class dbModel extends dbCon {
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$id,$username,$name,$firstname,$password,$email,$admin]);
     }
-    protected function setBooks() {
-        $sql = "INSERT INTO users() VALUES ($id,$katalog,$nummber,$)";
+    protected function setBooks($id,$catalog,$nummber,$shorttitle,$kategorie,$sell,$buyer,$autor,$title,$language,$imagepath,$verfasser,$state) {
+        $sql = "INSERT INTO users() VALUES (id,katalog,nummber,shorttitle,kategorie,sell,buyer,autor,title,language,imagepath,verfasser,state) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$id,$catalog,$nummber,$shorttitle,$kategorie,$sell,$buyer,$autor,$title,$language,$imagepath,$verfasser,$state]);
+    }
+    protected function filterUser($what,$whatwhat) {
+        $yes = "%".$whatwhat."%";
+        $sql = "SELECT * FROM benutzer where $what like ?";
+        echo $sql;
+        $stmt = $this->connect();
+        $stmt = $stmt->prepare($sql);
+        $stmt = $stmt->bindparam(1,$sql);
         $stmt->execute();
     }
 }
