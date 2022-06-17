@@ -4,6 +4,8 @@
     } elseif (isset($_GET["log"])){
         session_start();
         $_SESSION["admin"] = true;
+        $_SESSION["page"] = "book";
+        $_SESSION["BPage"] = 1;
         echo "<meta http-equiv='refresh' content='0;url=index.php'>";
     }
 ?>
