@@ -45,7 +45,7 @@
                 $(document).ready(function() {
                     createCookie("id", id, "0");
                 });
-                <?php
+                let popData = `<?php
                     $key = $_COOKIE["id"]; $item = $books[$key]; $pTitle = $item["title"];
                     $pIMG = $item["foto"]; $category = $item["kategorie"]; $author = $item["autor"];
                     $catalog = $item["katalog"]; $condition = $item["zustand"]; $writers = $item["verfasser"];
@@ -66,7 +66,8 @@
                         <p class='basis-4/5 dark:text-gray-300'>Sold: $sold</p>
                     </div>
                 </div>";
-                ?>
+                    ?>`
+                document.write(popData);
             }
         </script>
     </head>
@@ -91,7 +92,7 @@
                 foreach($books as $key => $item) {
                     if($key > ($page-1)*20 && $key < (($page*20)+1)){
                         $title = $item["kurztitle"]; $img = $item["foto"];
-                    echo "<div class='basis-[24%] min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid'>
+                    echo "<div onclick='popup($key)' class='basis-[24%] cursor-pointer min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid'>
 <div class='flex flex-col h-[100%] items-center'>
     <p class='grow basis-4/5 dark:text-gray-300 max-h-[9.5%]'>$title</p>
     <img src='../images/$img' class='dark:text-gray-300 grow basis-4/5 max-w-[196.5px]' height='auto' width='55%' alt='Failed to load'>
@@ -103,14 +104,14 @@
                 foreach($books as $key => $item) {
                     if($key > ($page-1)*20 && $key < (($page*20)+1)){
                         $title = $item["kurztitle"]; $img = $item["foto"];
-                        echo "<div class='basis-[24%] min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid' onclick='popup($key)'>
-<div class='flex flex-col h-[95%] items-center'>
+                        echo "<div class='basis-[24%] min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid'>
+<div class='flex flex-col h-[95%] items-center cursor-pointer' onclick='popup($key)'>
     <p class='grow basis-4/5 dark:text-gray-300 max-h-[10%]'>$title</p>
     <img src='../images/$img' class='dark:text-gray-300 grow basis-4/5 max-w-[196.5px]' height='auto' width='50%' alt='Failed to load'>
 </div>
 <div class='flex flex-col h-[5%] items-center'>
     <div class='h-[5%] grow shrink basis-4/5 gap-y-4'>
-        <a href='Edit.php' class='dark:text-gray-300 mr-2'>Edit</a><a href='Delete.php' class='dark:text-gray-300 ml-2'>Delete</a>
+        <a href='NonUsable.php' class='dark:text-gray-300 mr-2'>Edit</a><a href='NonUsable.php' class='dark:text-gray-300 ml-2'>Delete</a>
     </div>
 </div></div>";
                     }
