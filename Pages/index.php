@@ -23,54 +23,6 @@
 ?>
 <html lang="de" class="dark:bg-slate-600">
     <?php include("../static/header.php") ?>
-    <head>
-        <title>BücherDB</title>
-        <script>
-            // Function to create the cookie
-            function createCookie(name, value, days) {
-                let expires;
-                if (days) {
-                    let date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toUTCString();
-                }
-                else {
-                    expires = "";
-                }
-                document.cookie = escape(name) + "=" +
-                    escape(value) + expires + "; path=/";
-            }
-            function popup(id){
-                // Creating a cookie after the document is ready
-                $(document).ready(function() {
-                    createCookie("id", id, "0");
-                });
-                let popData = `<?php
-                    $key = $_COOKIE["id"]; $item = $books[$key]; $pTitle = $item["title"];
-                    $pIMG = $item["foto"]; $category = $item["kategorie"]; $author = $item["autor"];
-                    $catalog = $item["katalog"]; $condition = $item["zustand"]; $writers = $item["verfasser"];
-                    $buyer = $item["kaufer"];
-                    if($item["verkauft"] = 1){
-                        $sold = "Sold";
-                    } else {
-                        $sold = "Not sold";
-                    }
-                    echo "<div class='m-auto min-w-[25rem] h-[30rem] dark:bg-slate-800 border-2 border-solid rounded-lg absolute'>
-                    <div class='flex flex-cols items-center h-full w-full'>
-                        <p class='basis-4/5 dark:text-gray-300'>$pTitle</p>
-                        <img class='basis-4/5 dark:text-gray-300' src='../images/$pIMG' alt='Failed to load'/>
-                        <p class='basis-4/5 dark:text-gray-300'>Category: $category</p>
-                        <p class='basis-4/5 dark:text-gray-300'>Catalog: $catalog</p>
-                        <p class='basis-4/5 dark:text-gray-300'>Writers: $writers</p>
-                        <p class='basis-4/5 dark:text-gray-300'>Buyer: $buyer</p>
-                        <p class='basis-4/5 dark:text-gray-300'>Sold: $sold</p>
-                    </div>
-                </div>";
-                    ?>`
-                document.write(popData);
-            }
-        </script>
-    </head>
     <body>
     <?php include("../static/sidebar.php") ?>
     <nav class="top-0 fixed w-full h-14 items-center text-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-900">
@@ -92,12 +44,12 @@
                 foreach($books as $key => $item) {
                     if($key > ($page-1)*20 && $key < (($page*20)+1)){
                         $title = $item["kurztitle"]; $img = $item["foto"];
-                    echo "<div onclick='popup($key)' class='basis-[24%] cursor-pointer min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid'>
+                    echo "<a href='index.php?p=$page&id=$key' class='basis-[24%] cursor-pointer min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid'>
 <div class='flex flex-col h-[100%] items-center'>
     <p class='grow basis-4/5 dark:text-gray-300 max-h-[9.5%]'>$title</p>
     <img src='../images/$img' class='dark:text-gray-300 grow basis-4/5 max-w-[196.5px]' height='auto' width='55%' alt='Failed to load'>
 </div>
-</div>";
+</a>";
                     }
                 }
             } else {
@@ -105,10 +57,10 @@
                     if($key > ($page-1)*20 && $key < (($page*20)+1)){
                         $title = $item["kurztitle"]; $img = $item["foto"];
                         echo "<div class='basis-[24%] min-w-[20rem] grow h-96 shrink border-gray-100 dark:border-gray-900 rounded-lg p-2 border-4 border-solid'>
-<div class='flex flex-col h-[95%] items-center cursor-pointer' onclick='popup($key)'>
+<a class='flex flex-col h-[95%] items-center cursor-default' href='index.php?p=$page&id=$key'>
     <p class='grow basis-4/5 dark:text-gray-300 max-h-[10%]'>$title</p>
     <img src='../images/$img' class='dark:text-gray-300 grow basis-4/5 max-w-[196.5px]' height='auto' width='50%' alt='Failed to load'>
-</div>
+</a>
 <div class='flex flex-col h-[5%] items-center'>
     <div class='h-[5%] grow shrink basis-4/5 gap-y-4'>
         <a href='NonUsable.php' class='dark:text-gray-300 mr-2'>Edit</a><a href='NonUsable.php' class='dark:text-gray-300 ml-2'>Delete</a>
@@ -120,6 +72,37 @@
             }
             ?>
         </div>
+        <?php
+        if (isset($_GET["id"]) || !filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)){
+            $id = $_GET["id"];
+            foreach ($books as $key => $item){
+                if($id == $key){
+                    $item = $books[$key]; $pTitle = $item["title"];
+                    $pIMG = $item["foto"]; $category = $item["kategorie"]; $author = $item["autor"];
+                    $catalog = $item["katalog"]; $condition = $item["zustand"]; $writers = $item["verfasser"];
+                    $buyer = $item["kaufer"];
+                    if($item["verkauft"] = 1){
+                        $sold = "Sold";
+                    } else {
+                        $sold = "Not sold";
+                    }
+                    echo "<div class='mt-40 w-[88%] h-full absolute'><div class='m-auto w-[60rem] h-[40rem] border-gray-100 dark:border-gray-900 dark:bg-slate-800 border-4 border-solid rounded-lg'>
+                    <div class='grid grid-cols-3 grid-rows-6 items-center h-full w-full'>
+                        <p class='basis-4/5 col-span-3 text-center dark:text-gray-300'>$pTitle</p>
+                        <img class='basis-4/5 ml-2 row-span-5 dark:text-gray-300' src='../images/$pIMG' alt='Failed to load'/>
+                        <div class='flex flex-col row-span-5 col-span-2 ml-10'>
+                            <h1 class='text-xl basis-4/5 dark:text-gray-300'>Category: $category</h1>
+                            <h1 class='text-xl basis-4/5 dark:text-gray-300'>Catalog: $catalog</h1>
+                            <h1 class='text-xl basis-4/5 dark:text-gray-300'>Writers: $writers</h1>
+                            <h1 class='text-xl basis-4/5 dark:text-gray-300'>Buyer: $buyer</h1>
+                            <h1 class='text-xl basis-4/5 dark:text-gray-300'>Status: $sold</h1>
+                        </div>
+                    </div>
+                </div></div>";
+                }
+            }
+        }
+        ?>`
     </div>
     </body>
 </html>
