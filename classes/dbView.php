@@ -17,8 +17,11 @@ class dbView extends dbModel {
         $results = $this->filterBooks($what,$whatwhat);
         return $results;
     }
-    public function showBookid($id) {
-        $results = $this->getBookid($id);
-        return $results;
+    public function passwordcheck($id,$password) {
+        $results = $this->getpassword($id);
+        if (password_verify($password, $results['password']) === $results['password']) {
+            $result = true;
+        } else $result = false;
+        return $result;
     }
 }

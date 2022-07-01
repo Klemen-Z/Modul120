@@ -42,11 +42,11 @@ class dbModel extends dbCon {
         $stmt->execute([$yes]);
         return $stmt->fetchAll();
     }
-    protected function getBookid($id): bool|array
+    protected function getpassword($username): bool|array
     {
-        $sql = "SELECT * FROM buecher WHERE id like ?";
+        $sql = "SELECT passwort FROM buecher WHERE benutzername = ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$id]);
+        $stmt->execute([$username]);
         return $stmt->fetchAll();
     }
 }
