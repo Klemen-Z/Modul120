@@ -30,8 +30,8 @@ if (isset($_GET["log"])){
                 <input id="userP" type="Password" placeholder="Password" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
             </div>
             <div class="grow shrink bottom-2 pt-[70%]">
-                <a class="cursor-pointer rounded-md my p-1 my w-24 h-12 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0" href="register.php?log=true">Register</a>
-                <a class="cursor-pointer rounded-md my p-1 my w-24 h-12 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0" href="login.php">Log in</a>
+                <Button type="submit" class="cursor-pointer rounded-md my w-20 h-8 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0">Register</Button>
+                <a class="cursor-pointer rounded-md p-1 my w-24 h-12 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0" href="login.php">Log in</a>
             </div>
         </form>
     </div>
