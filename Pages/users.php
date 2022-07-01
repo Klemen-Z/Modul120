@@ -27,7 +27,7 @@ $_SESSION["page"] = "user";
                 foreach ($users as $item){
                     $uname = $item["benutzername"]; $email = $item["email"]; $fname = $item["name"];
                     $lname = $item["vorname"]; $admin = $item["admin"];
-                    echo "<tr class='border-solid border-b-1'>
+                    echo "<tr class='divide-y divide-slate-700 w-full'>
             <th class='text-gray-300'>$uname</th>
             <th class='text-gray-300'>$email</th>
             <th class='text-gray-300'>$fname</th>
