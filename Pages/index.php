@@ -39,9 +39,7 @@ if ($page < 0 || $page > (sizeof($books) / 20)) {
     <div class="w-full absolute h-14 flex flex-row flex-shrink justify-center align-center">
         <form method="post" class="w-[50%] h-full flex flex-row flex-shrink justify-center items-center">
             <label class="mr-2" for="drpdwn">Search: </label>
-            <select id="drpdwn" name="drpdwn"
-                    class="text-center h-10 w-[5rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required>
+            <select id="drpdwn" name="drpdwn" class="text-center h-10 w-[5rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 <option class="dark:text-white" value="id">Id</option>
                 <option class="dark:text-white" value="katalog">Katalog</option>
                 <option class="dark:text-white" value="nummer">Nummer</option>
@@ -54,14 +52,22 @@ if ($page < 0 || $page > (sizeof($books) / 20)) {
                 <option class="dark:text-white" value="verfasser">Verfasser</option>
                 <option class="dark:text-white" value="zustand">Zustand</option>
             </select>
-            <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar"
-                                                                     placeholder="Search Terms"
-                                                                     class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                     required type="search">
-            <button type="submit"
-                    class="text-white bg-sky-400 hover:bg-sky-500 basis-[5%] h-10 ml-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Search
-            </button>
+            <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar" placeholder="Search Terms" class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required type="search">
+            <label class="mx-2" for="drpdwn2"> Sort by: </label>
+            <select id="drpdwn2" name="drpdwn2" class="text-center h-10 w-[5rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <option class="dark:text-white" value="id">Id</option>
+                <option class="dark:text-white" value="katalog">Katalog</option>
+                <option class="dark:text-white" value="nummer">Nummer</option>
+                <option class="dark:text-white" value="kurztitle">Kurztitel</option>
+                <option class="dark:text-white" value="kategorie">Kategorie</option>
+                <option class="dark:text-white" value="verkauft">Verkauft</option>
+                <option class="dark:text-white" value="kaufer">Kaufer</option>
+                <option class="dark:text-white" value="autor">Autor</option>
+                <option class="dark:text-white" value="title">Title</option>
+                <option class="dark:text-white" value="verfasser">Verfasser</option>
+                <option class="dark:text-white" value="zustand">Zustand</option>
+            </select>
+            <button type="submit" class="text-white bg-sky-400 hover:bg-sky-500 basis-[4%] h-10 ml-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
         </form>
     </div>
     <?php
@@ -106,8 +112,6 @@ if ($page < 0 || $page > (sizeof($books) / 20)) {
             }
         }
         ?>
-
-
         <?php
         if (isset($_GET["id"]) && filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
             foreach ($books as $key => $item) {
