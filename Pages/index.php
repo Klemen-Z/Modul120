@@ -35,7 +35,7 @@
         <div class="w-full absolute h-14 flex flex-row flex-shrink justify-center align-center">
             <form method="post" class="w-[50%] h-full flex flex-row flex-shrink justify-center items-center">
                 <label class="mr-2" for="drpdwn">Search: </label>
-                <select id="drpdwn" name="drpdwn" class="p-4 pl-10 h-10 w-[10rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <select id="drpdwn" name="drpdwn" class="text-center h-10 w-[5rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <option class="dark:text-white" value="Category">Category</option> <option class="dark:text-white" value="Catalog">Catalog</option> <option class="dark:text-white" value="Writers">Writers</option> <option class="dark:text-white" value="Buyer">Buyer</option> <option class="dark:text-white" value="Status">Status</option>
                 </select>
                 <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar" placeholder="Search Terms" class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required type="search">
