@@ -131,10 +131,10 @@ if ($page < 0 || $page > (sizeof($books) / 20)) {
                         $sold = "Not sold";
                     }
                     echo "
-                        <div class='mt-15 w-[88%] h-full fixed'>
-                        <div class='m-auto w-[60rem] h-[40rem] border-gray-100 dark:border-gray-900 dark:bg-slate-800 border-4 border-solid rounded-lg'>
+                        <div class='mt-[3%] w-[88%] h-full fixed'>
+                        <div class='m-auto min-w-[50rem] min-h-[40rem] w-[70%] h-[80%] border-gray-100 dark:border-gray-900 dark:bg-slate-800 border-4 border-solid rounded-lg'>
                         <div class='grid grid-cols-4 grid-rows-6 items-center h-full w-full'>
-                        <p class='basis-4/5 col-span-3 text-center dark:text-gray-300'>$pTitle</p>
+                        <p class='basis-4/5 col-span-3 text-center dark:text-gray-300 p-1'>$pTitle</p>
                         <div class='text-center dark:text-gray-300'>
                         <a href='index.php?p=$page'>close</a>
                         </div>
