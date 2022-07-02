@@ -17,30 +17,34 @@ if (isset($_GET["log"])){
 <body>
 <div class="m-auto mt-[5%] p-2 min-h-fit min-w-fit rounded-lg w-[30rem] h-[80%] bg-slate-800">
     <div class="text-gray-300 min-h-fit min-w-fit w-full h-full">
-        <form class="flex flex-cols-1 flex-rows-4 flex-col h-full items-center gap-y-12" method="post">
+        <form class="flex flex-cols-1 flex-rows-4 flex-col h-full items-center gap-y-12 overflow-y" method="post">
             <svg class="w-24 h-24 ml-auto mr-auto stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div class="w-full">
-                <label for="username" class="font-semibold pl-1 ml-auto mr-auto">Username</label>
-                <input id="username" type="text" maxlength="50" placeholder="username" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+                <label for="userN" class="font-semibold pl-1 ml-auto mr-auto">Username</label>
+                <input id="userN" name="userN" type="text" maxlength="50" placeholder="username" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
             </div>
             <div class="w-full">
-                <label for="name" class="font-semibold pl-1 ml-auto mr-auto">Name</label>
-                <input id="name" type="Password" placeholder="name" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+                <label for="fn" class="font-semibold pl-1 ml-auto mr-auto">First Name</label>
+                <input id="fn" name="fn" type="text" maxlength="50" placeholder="First Name" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
             </div>
             <div class="w-full">
-                <label for="firstname" class="font-semibold pl-1 ml-auto mr-auto">Firstname</label>
-                <input id="firstname" type="Password" placeholder="firstname" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+                <label for="ln" class="font-semibold pl-1 ml-auto mr-auto">Last Name</label>
+                <input id="ln" name="ln" type="text" maxlength="50" placeholder="Last Name" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
             </div>
             <div class="w-full">
-                <label for="password" class="font-semibold pl-1 ml-auto mr-auto">Password</label>
-                <input id="password" type="Password" placeholder="Password" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
-            </div>            <div class="w-full">
-                <label for="email" class="font-semibold pl-1 ml-auto mr-auto">Email</label>
-                <input id="email" type="Password" placeholder="email" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+                <label for="em" class="font-semibold pl-1 ml-auto mr-auto">E-mail</label>
+                <input id="em" name="em" type="email" maxlength="50" placeholder="Email" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
             </div>
-            <div class="grow shrink bottom-2 pt-[70%]">
+            <div class="w-full">
+                <label for="pass" class="font-semibold pl-1 ml-auto mr-auto">Password</label>
+                <input id="pass" name="pass" type="Password" placeholder="Password" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+            </div>
+            <div class="w-full">
+                <input id="admin" type="checkbox" placeholder="Password" class="ml-2 rounded bg-slate-800 border-solid border-gray-400" /> <label for="admin" class="font-semibold pl-1 ml-auto mr-auto">Admin</label>
+            </div>
+            <div class="grow shrink bottom-0">
                 <Button type="submit" class="cursor-pointer rounded-md my w-20 h-8 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0">Register</Button>
                 <a class="cursor-pointer rounded-md p-1 my w-24 h-12 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0" href="login.php">Log in</a>
             </div>

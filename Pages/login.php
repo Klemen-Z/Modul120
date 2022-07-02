@@ -11,7 +11,7 @@ $db = new dbView();
         echo "<meta http-equiv='refresh' content='0;url=index.php'>";
     }
 ?>
-<html lang="de" class="bg-slate-600">
+<html lang="de" class="dark:bg-slate-600">
     <head>
         <title>BücherDB</title>
         <meta charset="UTF-8">
@@ -28,14 +28,21 @@ $db = new dbView();
                     <div class="w-full">
                         <label for="username" class="font-semibold pl-1 ml-auto mr-auto">Username</label>
                         <input id="username" type="text" maxlength="50" placeholder="username" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+                    <div class="w-full h-[10%]">
+                        <label for="userN" class="font-semibold pl-1 ml-auto mr-auto">Username</label>
+                        <input id="userN" type="text" maxlength="50" placeholder="username" class="w-full rounded dark:bg-slate-800 pl-1 dark:text-gray-300 border-solid dark:border-gray-400" />
                     </div>
                     <div class="w-full">
                         <label for="password" class="font-semibold pl-1 ml-auto mr-auto">Password</label>
                         <input id="password" type="Password" placeholder="Password" class="w-full rounded bg-slate-800 pl-1 text-gray-300 border-solid border-gray-400" />
+                    <div class="w-full h-[10%]">
+                        <label for="userP" class="font-semibold pl-1 ml-auto mr-auto">Password</label>
+                        <input id="userP" type="Password" placeholder="Password" class="w-full rounded dark:bg-slate-800 mb-5 pl-1 dark:text-gray-300 border-solid border-gray-400" />
+                        <a href="passforgor.php" class="cursor-pointer rounded-md p-1 w-10 h-8 text-sm text-center dark:bg-slate-500 dark:text-gray-300">Forgot password?</a>
                     </div>
                     <div class="grow shrink bottom-2 pt-[70%]">
-                        <Button type="submit" class="cursor-pointer rounded-md my w-20 h-8 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0">Log in</Button>
-                        <a class="cursor-pointer rounded-md p-1 my w-24 h-12 text-lg font-semibold ml-auto mr-auto text-center bg-slate-500 text-gray-300 inset-x-0 bottom-0" href="register.php">Register</a>
+                        <Button type="submit" class="cursor-pointer rounded-md my w-20 h-8 text-lg font-semibold ml-auto mr-auto text-center bg-slate-150 dark:bg-slate-500 dark:text-gray-300 inset-x-0 bottom-0">Log in</Button>
+                        <a class="cursor-pointer rounded-md p-1 my w-24 h-12 text-lg font-semibold ml-auto mr-auto text-center bg-slate-150 dark:bg-slate-500 dark:text-gray-300 inset-x-0 bottom-0" href="register.php">Register</a>
                     </div>
                 </form>
             </div>
