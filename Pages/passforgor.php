@@ -1,4 +1,7 @@
 <?php
+if (!$_SESSION["admin"]) {
+    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+}
     include_once '../static/autoload.php';
     if (isset($_POST["pass1"]) && isset($_POST["pass2"]) && isset($_POST["uName"])){
         if ($_POST["pass1"] == $_POST["pass2"]){

@@ -16,13 +16,13 @@ class dbModel extends dbCon {
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    protected function setUser($id,$username,$name,$firstname,$password,$email,$admin) {
-        $sql = "INSERT INTO users(ID,username,name,firstname,password,email,admin) VALUES (?,?,?,?,?,?,?)";
+    protected function setUser($username,$name,$firstname,$password,$email) {
+        $sql = "INSERT INTO benutzer(benutzername,name,vorname,passwort,email,admin) VALUES (?,?,?,?,?,?)";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$id,$username,$name,$firstname,$password,$email,$admin]);
+        $stmt->execute([$username,$name,$firstname,$password,$email,0]);
     }
     protected function setBooks($id,$catalog,$nummber,$shorttitle,$kategorie,$sell,$buyer,$autor,$title,$language,$imagepath,$verfasser,$state) {
-        $sql = "INSERT INTO users() VALUES (id,katalog,nummber,shorttitle,kategorie,sell,buyer,autor,title,language,imagepath,verfasser,state) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO buecher() VALUES (id,katalog,nummber,shorttitle,kategorie,sell,buyer,autor,title,language,imagepath,verfasser,state) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$id,$catalog,$nummber,$shorttitle,$kategorie,$sell,$buyer,$autor,$title,$language,$imagepath,$verfasser,$state]);
     }
@@ -44,9 +44,23 @@ class dbModel extends dbCon {
     }
     protected function getpassword($username): bool|array
     {
-        $sql = "SELECT passwort FROM buecher WHERE benutzername = ?";
+        $sql = "SELECT * FROM benutzer WHERE benutzername = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$username]);
+        return $stmt->fetchAll();
+    }
+    protected function getsortedUser($sortby,$how): bool|array
+    {
+        $sql = "SELECT * FROM benutzer ORDER BY $sortby $how ";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    protected function getsortedBooks($sortby,$how): bool|array
+    {
+        $sql = "SELECT * FROM buecher ORDER BY $sortby $how";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 }

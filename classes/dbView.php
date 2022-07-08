@@ -17,11 +17,19 @@ class dbView extends dbModel {
         $results = $this->filterBooks($what,$whatwhat);
         return $results;
     }
-    public function passwordcheck($id,$password) {
-        $results = $this->getpassword($id);
-        if (password_verify($password, $results['password']) === $results['password']) {
-            $result = true;
-        } else $result = false;
-        return $result;
+    public function showpassword($username) {
+        $results = $this->getpassword($username);
+        return $results;
+    }
+    public function makeuser($username,$name,$firstname,$password,$email) {
+        $this->setUser($username,$name,$firstname,$password,$email);
+    }
+    public function showsortedUsers($sortby,$how) {
+        $results = $this->getsortedUser($sortby,$how);
+        return $results;
+    }
+    public function showsortedBooks($sortby,$how) {
+        $results = $this->getsortedBooks($sortby,$how);
+        return $results;
     }
 }
