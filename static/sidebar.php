@@ -20,13 +20,26 @@
                  </svg>
                  <span class='ml-2 text-sm font-medium'>Users</span>
              </a>";
+                 echo "<a class='flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300' href='../Pages/NonUsable.php'>
+                 <span class='ml-2 text-sm font-medium'>new User</span>
+             </a>";
+                 echo "<a class='flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300' href='../Pages/NonUsable.php'>
+                 <span class='ml-2 text-sm font-medium'>new Book</span>
+             </a>";
              }} ?>
          </div>
      </div>
-     <a class="flex items-center justify-center w-full h-16 mt-auto bg-gray-200 hover:bg-gray-300 dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="../Pages/login.php">
+     <?php if(isset($_SESSION["admin"])) {?>
+     <a class='flex row-span-1 items-center justify-center w-full h-16 mt-auto bg-gray-200 hover:bg-gray-300 dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300'>
+     <span class='ml-2 text-sm font-medium'><?php echo $_SESSION['username']; ?></span>
+     </a>
+     <?php
+     }
+     ?>
+     <a class="flex row-span-2 items-center justify-center w-full h-16 bg-gray-200 hover:bg-gray-300 dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="../Pages/logout.php">
          <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
          </svg>
-         <span class="ml-2 text-sm font-medium"><?php if(isset($_SESSION["admin"])){echo "Log Out ";echo $_SESSION['username'];} else {echo "Log In";} ?></span>
+         <span class="ml-2 text-sm font-medium"><?php if(isset($_SESSION["admin"])){echo "Log Out ";} else {echo "Log In";} ?></span>
      </a>
  </div>

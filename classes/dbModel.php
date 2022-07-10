@@ -26,20 +26,20 @@ class dbModel extends dbCon {
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$id,$catalog,$nummber,$shorttitle,$kategorie,$sell,$buyer,$autor,$title,$language,$imagepath,$verfasser,$state]);
     }
-    protected function filterUsers($what,$whatwhat): bool|array
+    protected function filterUsers($what,$whatwhat,$sortby,$how): bool|array
     {
-        $yes = "%".$whatwhat."%";
-        $sql = "SELECT * FROM benutzer WHERE $what like ?";
+        $yes = "'%".$whatwhat."%'";
+        $sql = "SELECT * FROM benutzer WHERE $what like $yes ORDER BY $sortby $how";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$yes]);
+        $stmt->execute();
         return $stmt->fetchAll();
     }
-    protected function filterBooks($what,$whatwhat): bool|array
+    protected function filterBooks($what,$whatwhat,$sortby,$how): bool|array
     {
-        $yes = "%".$whatwhat."%";
-        $sql = "SELECT * FROM buecher WHERE $what like ?";
+        $yes = "'%".$whatwhat."%'";
+        $sql = "SELECT * FROM buecher WHERE $what like $yes ORDER BY $sortby $how";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$yes]);
+        $stmt->execute();
         return $stmt->fetchAll();
     }
     protected function getpassword($username): bool|array
@@ -49,16 +49,9 @@ class dbModel extends dbCon {
         $stmt->execute([$username]);
         return $stmt->fetchAll();
     }
-    protected function getsortedUser($sortby,$how): bool|array
+    protected function filtername($name): bool|array
     {
-        $sql = "SELECT * FROM benutzer ORDER BY $sortby $how ";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
-    protected function getsortedBooks($sortby,$how): bool|array
-    {
-        $sql = "SELECT * FROM buecher ORDER BY $sortby $how";
+        $sql = "SELECT * FROM benutzer WHERE benutzername = $name";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

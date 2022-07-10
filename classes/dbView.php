@@ -9,12 +9,12 @@ class dbView extends dbModel {
         $results = $this->getBooks();
         return $results;
     }
-    public function showfilteredUsers($what,$whatwhat) {
-        $results = $this->filterUsers($what,$whatwhat);
+    public function showfilteredUsers($what,$whatwhat,$sortby,$how) {
+        $results = $this->filterUsers($what,$whatwhat,$sortby,$how);
         return $results;
     }
-    public function showfilteredBooks($what,$whatwhat) {
-        $results = $this->filterBooks($what,$whatwhat);
+    public function showfilteredBooks($what,$whatwhat,$sortby,$how) {
+        $results = $this->filterBooks($what,$whatwhat,$sortby,$how);
         return $results;
     }
     public function showpassword($username) {
@@ -24,12 +24,8 @@ class dbView extends dbModel {
     public function makeuser($username,$name,$firstname,$password,$email) {
         $this->setUser($username,$name,$firstname,$password,$email);
     }
-    public function showsortedUsers($sortby,$how) {
-        $results = $this->getsortedUser($sortby,$how);
-        return $results;
-    }
-    public function showsortedBooks($sortby,$how) {
-        $results = $this->getsortedBooks($sortby,$how);
+    public function showusername($username) {
+        $results = $this->getpassword($username);
         return $results;
     }
 }

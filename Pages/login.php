@@ -3,10 +3,7 @@ session_start();
 include_once '../static/sidebar.php';
 include_once '../static/autoload.php';
 $db = new dbView();
-if (isset($_SESSION["admin"])) {
-    echo "logged out";
-    session_destroy();
-}
+
 ?>
     <html lang="de" class="dark:bg-slate-600">
     <head>
@@ -47,10 +44,7 @@ if (isset($_SESSION["admin"])) {
                        href="register.php">Register</a>
                 </div>
             </form>
-        </div>
-    </div>
-    </body>
-    </html>
+
 <?php
 
 if (isset($_POST['password']) && isset($_POST['username'])) {
@@ -75,17 +69,23 @@ if (isset($_POST['password']) && isset($_POST['username'])) {
 // kein fehler
     if (empty($error)) {
         $results = $db->showpassword($username);
-        $results = $results['0'];
-        $result = $results['passwort'];
-        if (password_verify($password, $result)) {
-            $_SESSION['admin'] = $results['admin'];
-            $_SESSION['username'] = $username;
+        if (isset($results['0'])) {
+            $results = $results['0'];
+            $result = $results['passwort'];
+            if (password_verify($password, $result)) {
+                $_SESSION['admin'] = $results['admin'];
+                $_SESSION['username'] = $username;
 
-            echo "<meta http-equiv='refresh' content='0;url=index.php'>";
-        } else {
-            echo "wrong password";
-        }
+                echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+            } else {
+                echo "<a>wrong password</a>";
+            }
+        }else {echo "<a>user doesnt exist</a>";}
     }
 }
 ?>
+        </div>
+    </div>
+    </body>
+    </html>
 

@@ -1,11 +1,9 @@
 <?php
 include_once '../static/autoload.php';
 $db = new dbView();
-if (isset($_POST['SearchBar'])) {
-    $users = ($db->showfilteredUsers($_POST['drpdwn'], $_POST['SearchBar']));
-} else if(isset($_POST['drpdwn2'])) {
-    $users = ($db->showsortedUsers($_POST['drpdwn2'], $_POST['how']));
-} else {
+if (isset($_POST['drpdwn'])) {
+    $users = ($db->showfilteredUsers($_POST['drpdwn'], $_POST['SearchBar'], $_POST['drpdwn2'], $_POST['how']));
+}  else {
     $users = ($db->showUsers());
 }
 $_SESSION["page"] = "user";
@@ -37,10 +35,7 @@ $_SESSION["page"] = "user";
                     <option class="dark:text-white" value="email">E-mail</option>
                     <option class="dark:text-white" value="admin">Admin</option>
                 </select>
-                <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar" placeholder="Search Terms" class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required type="search">
-                <button type="submit" class="text-white bg-sky-400 hover:bg-sky-500 basis-[4%] h-10 ml-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-            </form>
-            <form method="post" class="w-[30%] h-full flex flex-row flex-shrink justify-center items-center ml-10">
+                <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar" placeholder="Search Terms" class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="search">
                 <label class="mx-2" for="drpdwn2"> Sort by: </label>
                 <select id="drpdwn2" name="drpdwn2" class="text-center h-10 w-[5rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <option class="dark:text-white" value="ID">Id</option>
@@ -54,7 +49,7 @@ $_SESSION["page"] = "user";
                     <option class="dark:text-white" value="asc">Asc</option>
                     <option class="dark:text-white" value="desc">Desc</option>
                 </select>
-                <button type="submit" class="text-white bg-sky-400 hover:bg-sky-500 basis-[4%] h-10 ml-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sort</button>
+                <button type="submit" class="text-white bg-sky-400 hover:bg-sky-500 basis-[4%] h-10 ml-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
             </form>
         </div>
     </nav>

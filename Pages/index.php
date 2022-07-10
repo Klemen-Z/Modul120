@@ -10,19 +10,15 @@ $extra2 =NULL;
 $extra3 =NULL;
 $extra4 =NULL;
 if (isset($_POST['SearchBar'])) {
-    $books = ($db->showfilteredBooks($_POST['drpdwn'], $_POST['SearchBar']));
+    $books = ($db->showfilteredBooks($_POST['drpdwn'], $_POST['SearchBar'],$_POST['drpdwn2'], $_POST['how']));
     $extra1 =$_POST['drpdwn'];
     $extra2 =$_POST['SearchBar'];
-} else if(!empty($_GET['e1'])) {
-    $books = ($db->showfilteredBooks($_GET['e1'], $_GET['e2']));
-    $extra1 =$_GET['e1'];
-    $extra2 =$_GET['e2'];
-} else if(isset($_POST['drpdwn2'])) {
-    $books = ($db->showsortedBooks($_POST['drpdwn2'], $_POST['how']));
     $extra3 =$_POST['drpdwn2'];
     $extra4 =$_POST['how'];
-} else if(!empty($_GET['e3'])) {
-    $books = ($db->showsortedBooks($_GET['e3'], $_GET['e4']));
+} else if(!empty($_GET['e1'])) {
+    $books = ($db->showfilteredBooks($_GET['e1'], $_GET['e2'],$_GET['e3'], $_GET['e4']));
+    $extra1 =$_GET['e1'];
+    $extra2 =$_GET['e2'];
     $extra3 =$_GET['e3'];
     $extra4 =$_GET['e4'];
 } else  {
@@ -74,10 +70,7 @@ if ($page < 0 || $page > (sizeof($books) / 20)) {
                 <option class="dark:text-white" value="verfasser">Verfasser</option>
                 <option class="dark:text-white" value="zustand">Zustand</option>
             </select>
-            <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar" placeholder="Search Terms" class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required type="search">
-            <button type="submit" class="text-white bg-sky-400 hover:bg-sky-500 basis-[4%] h-10 ml-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-        </form>
-        <form method="post" class="w-[30%] h-full flex flex-row flex-shrink justify-center items-center ml-10">
+            <label class="mx-2" for="SearchBar"> for: </label><input id="SearchBar" name="SearchBar" placeholder="Search Terms" class="p-4 pl-10 w-[30rem] h-10 text-sm basis-[50%] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="search">
         <label class="mx-2" for="drpdwn2"> Sort by: </label>
         <select id="drpdwn2" name="drpdwn2" class="text-center h-10 w-[5rem] grow text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             <option class="dark:text-white" value="id">Id</option>
@@ -162,8 +155,8 @@ if ($page < 0 || $page > (sizeof($books) / 20)) {
                     echo "
                         <div class='mt-[3%] w-[88%] h-full fixed'>
                         <div class='m-auto min-w-[50rem] min-h-[40rem] w-[70%] h-[80%] border-gray-100 dark:border-gray-900 dark:bg-slate-800 border-4 border-solid rounded-lg'>
-                        <div class='grid grid-cols-4 grid-rows-6 items-center h-full w-full'>
-                        <p class='basis-4/5 col-span-3 text-center dark:text-gray-300 p-1'>$pTitle</p>
+                        <div class='grid grid-cols-4 grid-rows-6 items-center h-full w-full overflow-auto'>
+                        <p class='basis-4/5 col-span-3 text-center dark:text-gray-300 p-1 '>$pTitle</p>
                         <div class='text-center dark:text-gray-300'>
                         <a href='index.php?p=$page&e1=$extra1&e2=$extra2&e3=$extra3&e4=$extra4'>close</a>
                         </div>
